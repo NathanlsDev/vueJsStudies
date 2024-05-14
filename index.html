@@ -3,19 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/style.css" />
     <title>Document</title>
   </head>
   <body>
-    <div id="app">
-      <div class="product-image">
-        <img src="" />
-      </div>
+    <main id="app">
+      <section class="product">
+        <figure class="product-image">
+          <img :src="image" :alt="altText"/>
+        </figure>
 
-      <div class="product-info">
-        <h1>{{ product }}</h1>
-        <p>{{ description }}</p>
-      </div>
-    </div>
+        <div class="product-info">
+          <h1>{{ product }}</h1>
+          <p>{{ description }}</p>
+          <a :href="link" target="_blank">More products like this</a>
+        </div>
+      </section>
+    </main>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script src="assets/javascript/main.js"></script>
