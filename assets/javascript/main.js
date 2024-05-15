@@ -13,12 +13,30 @@ var app = new Vue({
       {
         variantId: 2234,
         variantColor: "green",
+        variantImage:
+          "https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg",
       },
       {
         variantId: 2235,
         variantColor: "blue",
+        variantImage:
+          "https://www.vuemastery.com/images/challenges/vmSocks-blue-onWhite.jpg",
       },
     ],
     sizes: ["S: 36", "M: 39", "L: 42", "XL: 45"],
+    cartItens: 0,
+  },
+  methods: {
+    updateProduct(variantImage) {
+      this.image = variantImage;
+    },
+    addToCart() {
+      this.cartItens++;
+    },
+    removeFromCart() {
+      if (this.cartItens > 0) {
+        this.cartItens--;
+      }
+    },
   },
 });
