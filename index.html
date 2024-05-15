@@ -19,6 +19,7 @@
             <p>{{ description }}</p>
             <a :href="link" target="_blank">More products like this</a>
             <p v-if="onSale">On Sale!</p>
+            <p v-if="inStock > 0">In stock ({{inStock}})</p>
             <p v-else>Out of Stock</p>
           </div>
 

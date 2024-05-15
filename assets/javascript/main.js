@@ -8,6 +8,7 @@ var app = new Vue({
     altText: "A pair of green socks",
     link: "https://www.amazon.com/s?k=green+socks&ref=cs_503_search",
     onSale: true,
+    inStock: 5,
     details: ["80% cotton", "20% polyester", "Gender-neutral"],
     variants: [
       {
@@ -31,11 +32,15 @@ var app = new Vue({
       this.image = variantImage;
     },
     addToCart() {
-      this.cartItens++;
+      if (this.inStock > 0) {
+        this.inStock--;
+        this.cartItens++;
+      }
     },
     removeFromCart() {
       if (this.cartItens > 0) {
         this.cartItens--;
+        this.inStock++;
       }
     },
   },
