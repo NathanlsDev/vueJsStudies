@@ -10,13 +10,15 @@
     <main id="app">
       <section class="product">
         <figure class="product-image">
-          <img :src="image" :alt="altText"/>
+          <img :src="image" :alt="altText" />
         </figure>
 
         <div class="product-info">
           <h1>{{ product }}</h1>
           <p>{{ description }}</p>
           <a :href="link" target="_blank">More products like this</a>
+          <p v-if="onSale">On Sale!</p>
+          <p v-else>Out of Stock</p>
         </div>
       </section>
     </main>
