@@ -1,75 +1,78 @@
-body {
-  font-family: tahoma;
-  color: #282828;
-  margin: 0px;
-}
-
-.nav-bar {
-  background: linear-gradient(-90deg, #84CF6A, #16C0B0);
-  height: 60px;
-  margin-bottom: 15px;
-}
-
-.product {
-  display: flex;
-}
-
-img {
-  border: 1px solid #d8d8d8;
-  width: 70%;
-  margin: 40px;
-  box-shadow: 0px .5px 1px #d8d8d8;
-}
-
-.product-image {
-  flex-basis: 700px;
-}
-
-.product-info {
-  margin-top: 10px;
-  flex-basis: 500px;
-}
-
-.color-box {
-  width: 40px;
-  height: 40px;
-  margin-top: 5px;
-}
-
-.cart {
-  margin-right: 25px;
-  float: right;
-  border: 1px solid #d8d8d8;
-  padding: 5px 20px;
-}
-
-button {
-  margin-top: 30px;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style: inside;
   border: none;
-  background-color: #1E95EA;
-  color: white;
-  height: 40px;
-  width: 100px;
-  font-size: 14px;
-} 
-
-.disabledButton {
-  background-color: #d8d8d8;
 }
 
-.review-form {
-  width: 30%;
-  padding: 20px;
-  border: 1px solid #d8d8d8;  
+body {
+  font-size: 1.5rem;
+  font-family: sans-serif;
 }
 
-input {
-  width: 100%;  
-  height: 25px;
-  margin-bottom: 20px;
+main {
+  display: grid;
+  place-items: center;
+  padding: 1rem;
 }
 
-textarea {
-  width: 100%;
-  height: 60px;
+article {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+figure {
+  width: 20vw;
+  height: 100%;
+  border: 2px solid gray;
+  img {
+    width: 100%;
+  }
+}
+
+aside {
+  line-height: 1.5;
+  .desc {
+    width: 35vw;
+    margin: 0 1rem;
+  }
+  .details {
+    margin: 0 1rem;
+    display: flex;
+    gap: 2rem;
+    ul {
+      flex-flow: column wrap;
+    }
+    p {
+      text-transform: capitalize;
+      border: 1px solid transparent;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.interact {
+  p {
+    text-align: right;
+  }
+  button {
+    margin-top: 1rem;
+    background-color: royalblue;
+    border-radius: 8px;
+    color: white;
+    font-size: 1.3rem;
+    width: 100px;
+    height: 40px;
+    transition: all ease-in-out 0.2s;
+    &:hover {
+      filter: brightness(1.2);
+      cursor: pointer;
+    }
+    &:active {
+      transform: scale(0.9);
+    }
+  }
 }

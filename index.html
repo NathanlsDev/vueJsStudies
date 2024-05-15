@@ -8,38 +8,47 @@
   </head>
   <body>
     <main id="app">
-      <section class="product">
-        <figure class="product-image">
+      <article class="product">
+        <figure>
           <img :src="image" :alt="altText" />
         </figure>
 
-        <section class="product-info">
-          <h1>{{ product }}</h1>
-          <p>{{ description }}</p>
-          <a :href="link" target="_blank">More products like this</a>
-          <p v-if="onSale">On Sale!</p>
-          <p v-else>Out of Stock</p>
-          <section>
-            <ul v-for="detail in details">
-              <li>{{ detail }}</li>
+        <aside>
+          <div class="desc">
+            <h1>{{ product }}</h1>
+            <p>{{ description }}</p>
+            <a :href="link" target="_blank">More products like this</a>
+            <p v-if="onSale">On Sale!</p>
+            <p v-else>Out of Stock</p>
+          </div>
+
+          <div class="details">
+            <ul>
+              <li v-for="detail in details">{{ detail }}</li>
             </ul>
-            <ul v-for="size in sizes">
-              <li>{{ size }}</li>
+
+            <ul>
+              <li v-for="size in sizes">{{ size }}</li>
             </ul>
-            <div v-for="variant in variants" :key="variant.variantId">
-              <p @mouseover="updateProduct(variant.variantImage)">
+
+            <div>
+              <p
+                v-for="variant in variants"
+                :key="variant.variantId"
+                @mouseover="updateProduct(variant.variantImage)"
+              >
                 {{ variant.variantColor }}
               </p>
             </div>
-          </section>
-        </section>
-        <div>
-          <button @click="addToCart">
-            Add</button>
-          <button @click="removeFromCart">Remove</button>
+          </div>
+        </aside>
+
+        <div class="interact">
           <p>Cart ({{ cartItens }})</p>
+          <button @click="addToCart">Add</button>
+          <button @click="removeFromCart">Remove</button>
         </div>
-      </section>
+      </article>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
