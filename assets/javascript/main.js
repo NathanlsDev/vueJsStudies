@@ -1,14 +1,14 @@
 var app = new Vue({
   el: "#app",
   data: {
+    brand: "Vue Mastery",
     product: "Socks",
     description: "Vue Socks: +5 comfy code.",
-    image:
-      "https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg",
+    selectedVariant: 0,
     altText: "A pair of green socks",
     link: "https://www.amazon.com/s?k=green+socks&ref=cs_503_search",
     onSale: true,
-    inStock: 5,
+    cartItens: 0,
     details: ["80% cotton", "20% polyester", "Gender-neutral"],
     variants: [
       {
@@ -16,35 +16,47 @@ var app = new Vue({
         variantColor: "green",
         variantImage:
           "https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg",
+        variantQuantity: 5,
       },
       {
         variantId: 2235,
         variantColor: "blue",
         variantImage:
           "https://www.vuemastery.com/images/challenges/vmSocks-blue-onWhite.jpg",
+        variantQuantity: 2,
       },
     ],
     sizes: ["S: 36", "M: 39", "L: 42", "XL: 45"],
-    cartItens: 0,
   },
   methods: {
-    updateProduct(variantImage) {
-      this.image = variantImage;
+    updateProduct(index) {
+      this.selectedVariant = index;
     },
     addToCart() {
-      if (this.inStock > 0) {
-        this.inStock--;
+      if (this.variants[this.selectedVariant].variantQuantity > 0) {
+        this.variants[this.selectedVariant].variantQuantity--;
         this.cartItens++;
       }
-      if (this.inStock === 0) {
-        this.inStock = false;
+      if (this.variants[this.selectedVariant].variantQuantity === 0) {
+        this.variants[this.selectedVariant].variantQuantity = false;
       }
     },
     removeFromCart() {
       if (this.cartItens > 0) {
         this.cartItens--;
-        this.inStock++;
+        this.variants[this.selectedVariant].variantQuantity++;
       }
+    },
+  },
+  computed: {
+    title() {
+      return `${this.brand} ${this.product}`;
+    },
+    image() {
+      return this.variants[this.selectedVariant].variantImage;
+    },
+    inStock() {
+      return this.variants[this.selectedVariant].variantQuantity;
     },
   },
 });

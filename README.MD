@@ -1,6 +1,5 @@
 # Intro to Vue 2 | Vue Mastery School
 ## Lesson 1 - The Vue Instance
-### What have we learned?
 - How to begin writing a Vue application with a Vue instance, and how to load basic data onto the webpage.
 - The Vue instance is the root of every Vue application
 - The Vue instance plugs into an element in the DOM
@@ -44,3 +43,7 @@
 - Data can be bound to an element’s ```style``` attribute
 - Data can be bound to an element’s ```class```
 - We can use expressions inside an element’s class binding to evaluate whether a class should appear or not
+
+## Lesson 7 - Computed properties
+- Computed properties calculate a value rather than store a value.
+- Computed properties can use data from your app to calculate its values.
