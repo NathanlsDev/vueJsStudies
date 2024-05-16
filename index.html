@@ -18,7 +18,7 @@
             <h1>{{ product }}</h1>
             <p>{{ description }}</p>
             <a :href="link" target="_blank">More products like this</a>
-            <p v-if="onSale">On Sale!</p>
+            <p v-if="onSale && inStock">On Sale!</p>
             <p v-if="inStock">In stock ({{inStock}})</p>
             <p v-else>Out of Stock</p>
           </div>
@@ -39,8 +39,7 @@
                 class="colorBox"
                 :style="{ backgroundColor: variant.variantColor }"
                 @mouseover="updateProduct(variant.variantImage)"
-              >            
-              </p>
+              ></p>
             </div>
           </div>
         </aside>
