@@ -36,6 +36,9 @@ var app = new Vue({
         this.inStock--;
         this.cartItens++;
       }
+      if (this.inStock === 0) {
+        this.inStock = false;
+      }
     },
     removeFromCart() {
       if (this.cartItens > 0) {
