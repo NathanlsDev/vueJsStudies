@@ -8,62 +8,8 @@
   </head>
   <body>
     <main id="app">
-      <article class="product">
-        <figure>
-          <img :src="image" :alt="altText" />
-        </figure>
-
-        <aside>
-          <div class="desc">
-            <h1>{{ title }}</h1>
-            <p>{{ description }}</p>
-            <a :href="link" target="_blank">More products like this</a>
-            <p v-if="onSale && inStock">On Sale!</p>
-            <p v-if="inStock">In stock ({{inStock}})</p>
-            <p v-else :class="{ disabledText: !inStock }">Out of Stock</p>
-          </div>
-
-          <div class="details">
-            <ul>
-              <li v-for="detail in details">{{ detail }}</li>
-            </ul>
-
-            <ul>
-              <li v-for="size in sizes">{{ size }}</li>
-            </ul>
-
-            <div>
-              <p
-                v-for="(variant, index) in variants"
-                :key="variant.variantId"
-                class="colorBox"
-                :style="{ backgroundColor: variant.variantColor }"
-                @mouseover="updateProduct(index)"
-              ></p>
-            </div>
-          </div>
-        </aside>
-
-        <div class="interact">
-          <p>Cart ({{ cartItens }})</p>
-          <button
-            @click="addToCart"
-            :disabled="!inStock"
-            :class="{ disabledButton: !inStock}"
-          >
-            Add
-          </button>
-          <button
-            @click="removeFromCart"
-            :disabled="!cartItens"
-            :class="{ disabledButton: !cartItens}"
-          >
-            Remove
-          </button>
-        </div>
-      </article>
+      <product :premium="premium"></product>
     </main>
-
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
     <script src="assets/javascript/main.js"></script>
   </body>
