@@ -1,3 +1,19 @@
+Vue.component("product-details", {
+  props: {
+    details: {
+      type: Array,
+      required: true,
+    },
+  },
+  template: `
+  <div class="details">
+    <ul>
+      <li v-for="detail in details">{{ detail }}</li>
+    </ul>
+  </div>
+  `,
+});
+
 Vue.component("product", {
   props: {
     premium: {
@@ -23,10 +39,6 @@ Vue.component("product", {
       </div>
 
       <div class="details">
-        <ul>
-          <li v-for="detail in details">{{ detail }}</li>
-        </ul>
-
         <ul>
           <li v-for="size in sizes">{{ size }}</li>
         </ul>
@@ -72,7 +84,6 @@ Vue.component("product", {
       link: "https://www.amazon.com/s?k=green+socks&ref=cs_503_search",
       onSale: true,
       cartItens: 0,
-      details: ["80% cotton", "20% polyester", "Gender-neutral"],
       variants: [
         {
           variantId: 2234,
@@ -133,5 +144,6 @@ var app = new Vue({
   el: "#app",
   data: {
     premium: true,
+    details: ["80% cotton", "20% polyester", "Gender-neutral"],
   },
 });
