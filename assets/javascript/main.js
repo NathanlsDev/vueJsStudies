@@ -7,7 +7,7 @@ Vue.component("product-details", {
     sizes: {
       type: Array,
       required: true,
-    }
+    },
   },
   template: `
   <div class="details">
@@ -25,6 +25,14 @@ Vue.component("product", {
   props: {
     premium: {
       type: Boolean,
+      required: true,
+    },
+    cartItens: {
+      type: Array,
+      required: true,
+    },
+    variants: {
+      type: Array,
       required: true,
     },
   },
@@ -59,7 +67,6 @@ Vue.component("product", {
     </aside>
 
     <div class="interact">
-      <p>Cart ({{ cartItens }})</p>
       <button
         @click="addToCart"
         :disabled="!inStock"
@@ -69,8 +76,8 @@ Vue.component("product", {
       </button>
       <button
         @click="removeFromCart"
-        :disabled="!cartItens"
-        :class="{ disabledButton: !cartItens}"
+        :disabled="!cartItens.length"
+        :class="{ disabledButton: !cartItens.length}"
       >
         Remove
       </button>
@@ -86,23 +93,6 @@ Vue.component("product", {
       altText: "A pair of green socks",
       link: "https://www.amazon.com/s?k=green+socks&ref=cs_503_search",
       onSale: true,
-      cartItens: 0,
-      variants: [
-        {
-          variantId: 2234,
-          variantColor: "green",
-          variantImage:
-            "https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg",
-          variantQuantity: 5,
-        },
-        {
-          variantId: 2235,
-          variantColor: "blue",
-          variantImage:
-            "https://www.vuemastery.com/images/challenges/vmSocks-blue-onWhite.jpg",
-          variantQuantity: 2,
-        },
-      ],
     };
   },
 
@@ -111,16 +101,10 @@ Vue.component("product", {
       this.selectedVariant = index;
     },
     addToCart() {
-      if (this.variants[this.selectedVariant].variantQuantity > 0) {
-        this.variants[this.selectedVariant].variantQuantity--;
-        this.cartItens++;
-      }
+      this.$emit("add-to-cart", this.selectedVariant, this.variants[this.selectedVariant].variantId);
     },
     removeFromCart() {
-      if (this.cartItens > 0) {
-        this.cartItens--;
-        this.variants[this.selectedVariant].variantQuantity++;
-      }
+      this.$emit("remove-from-cart", this.selectedVariant, this.variants[this.selectedVariant].variantId);
     },
   },
   computed: {
@@ -148,5 +132,35 @@ var app = new Vue({
     premium: true,
     details: ["80% cotton", "20% polyester", "Gender-neutral"],
     sizes: ["S: 36", "M: 39", "L: 42", "XL: 45"],
+    cartItens: [],
+    variants: [
+      {
+        variantId: 2234,
+        variantColor: "green",
+        variantImage:
+          "https://www.vuemastery.com/images/challenges/vmSocks-green-onWhite.jpg",
+        variantQuantity: 5,
+      },
+      {
+        variantId: 2235,
+        variantColor: "blue",
+        variantImage:
+          "https://www.vuemastery.com/images/challenges/vmSocks-blue-onWhite.jpg",
+        variantQuantity: 2,
+      },
+    ],
+  },
+
+  methods: {
+    updateCart(variantIndex) {
+      this.cartItens.unshift(this.variants[variantIndex].variantId)
+      this.variants[variantIndex].variantQuantity--;
+    },
+    decreaseCart(variantIndex) {
+      if (this.cartItens.length > 0){
+        this.cartItens.shift(this.variants[variantIndex].variantId)
+        this.variants[variantIndex].variantQuantity++;
+      }
+    },
   },
 });

@@ -8,7 +8,16 @@
   </head>
   <body>
     <main id="app">
-      <product :premium="premium"></product>
+      <div>
+        <p>Cart ({{ cartItens.length }})</p>
+      </div>
+      <product
+        :premium="premium"
+        :cart-itens="cartItens"
+        :variants="variants"
+        @add-to-cart="updateCart"
+        @remove-from-cart="decreaseCart"
+      ></product>
       <product-details :details="details" :sizes="sizes"></product-details>
     </main>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
