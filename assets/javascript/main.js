@@ -4,11 +4,18 @@ Vue.component("product-details", {
       type: Array,
       required: true,
     },
+    sizes: {
+      type: Array,
+      required: true,
+    }
   },
   template: `
   <div class="details">
     <ul>
       <li v-for="detail in details">{{ detail }}</li>
+    </ul>
+    <ul>
+      <li v-for="size in sizes">{{ size }}</li>
     </ul>
   </div>
   `,
@@ -39,10 +46,6 @@ Vue.component("product", {
       </div>
 
       <div class="details">
-        <ul>
-          <li v-for="size in sizes">{{ size }}</li>
-        </ul>
-
         <div>
           <p
             v-for="(variant, index) in variants"
@@ -100,7 +103,6 @@ Vue.component("product", {
           variantQuantity: 2,
         },
       ],
-      sizes: ["S: 36", "M: 39", "L: 42", "XL: 45"],
     };
   },
 
@@ -145,5 +147,6 @@ var app = new Vue({
   data: {
     premium: true,
     details: ["80% cotton", "20% polyester", "Gender-neutral"],
+    sizes: ["S: 36", "M: 39", "L: 42", "XL: 45"],
   },
 });
